@@ -1,0 +1,39 @@
+:root {
+  --color-bg-primary: #c4e3d8;
+  --color-bg-Two: #cde9de;
+  --color-bg-secundary: #02724b;
+  --color-primary: #13141f;
+  --color-blueI: #334269;
+  --color-text-light: #ffffff;
+  --color-text-dark: #000000;
+  --color-text-green100: #063616;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--color-bg-primary);
+}
+
+span, a {
+  font-size: 1.4rem;
+}
+
+a{
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-bg-secundary);
+}

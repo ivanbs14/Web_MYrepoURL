@@ -1,0 +1,27 @@
+.allRepository {
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    color: #2E2312;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 0.3rem;
+    background-color: #F1EADD;
+}
+
+.itensRepo {
+    display: flex;
+    gap: 2rem;
+}
+
+.btnRepo {
+    width: 28rem;
+    height: 4rem;
+    margin-top: 0;
+
+    font-size: 1.6rem;
+    font-weight: 400;
+}
