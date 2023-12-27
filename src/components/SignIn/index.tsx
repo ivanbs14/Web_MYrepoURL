@@ -1,16 +1,15 @@
-import React from "react";
 import { useState } from "react";
 
 import "./styles.css";
 import Logo from '../../assets/5OnRVY-LogoMakr.png'
-import { FiLogIn, FiEye, FiEyeOff } from "react-icons/fi";
+import { RiUserShared2Fill } from "react-icons/ri";
+import { GoPasskeyFill } from "react-icons/go";
 import { InputS } from "../InputS";
 import { Button } from "../Button";
 
 export function SignIn() {
-   const [email, setEmail] = useState("")
-   const [password, setPassword] = useState("")
-   const [showPassword, setShowPassword] = useState(false);
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
 
    const handleEmailChange = (value: string) => {
       setEmail(value);
@@ -18,10 +17,6 @@ export function SignIn() {
    
    const handlePasswordChange = (value: string) => {
       setPassword(value)
-   };
-
-   const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
    };
 
    return (
@@ -36,7 +31,7 @@ export function SignIn() {
          <div className="inputs">
             <InputS 
                value={email}
-               icon={FiLogIn}
+               icon={RiUserShared2Fill}
                placeholder="Email"
                onChange={handleEmailChange}
             />
@@ -44,7 +39,7 @@ export function SignIn() {
             <InputS 
                type="password"
                value={password}
-               icon={FiLogIn}
+               icon={GoPasskeyFill}
                placeholder="Password"
                onChange={handlePasswordChange}
             />

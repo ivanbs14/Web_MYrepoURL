@@ -1,39 +1,44 @@
-import './styles.css'
-import { useState } from 'react';
-import { FiLogIn } from "react-icons/fi";
-import { FaRegAddressCard } from "react-icons/fa";
-
-import Logo from '../../assets/5OnRVY-LogoMakr.png'
-import { SignIn } from '../../components/SignIn';
+// No componente Sign
+import React, { useState } from 'react';
+import './styles.css';
+import Logo from '../../assets/5OnRVY-LogoMakr.png';
+import { SignOut } from '../../components/SignOut';
+import { Alert } from '../../components/Alert';
 
 export function Sign() {
+  const [alertDisabled, setAlertDisabled] = useState(true);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // Function to close the alert
+  const handleAlertClose = () => {
+    setAlertMessage('');
+    setAlertDisabled(true);
+  };
 
-  const handleEmailChange = (newEmail: string) => {
-    setEmail(newEmail);
-  }
-  const handlePasswordChange = (newPassword: string) => {
-    setPassword(newPassword);
-  }
+  // Function to handle form validation from the SignOut component
+  const handleFormValidation = (isValid: boolean) => {
+    setIsFormValid(isValid);
 
-  function sendDadas() {
-    console.log(email, password);
-    setEmail('');
-    setPassword('');
-
-  }
-  
-  /* useEffect(() => {
-
-  }, [sendDadas]); */
+    if (!isValid) {
+      setAlertMessage('FILL IN ALL FIELDS...');
+      setAlertDisabled(false);
+    } else {
+      setAlertMessage('');
+      setAlertDisabled(true);
+    }
+  };
 
   return (
-    <div className='container'>
-      <div className='page slide-in-bottom'>
-        <SignIn />
+    <div className="container">
+      {!alertDisabled && (
+        <Alert onClickOff={handleAlertClose}>
+          <h1>{alertMessage}</h1>
+        </Alert>
+      )}
+      <div className="page slide-in-bottom">
+        <SignOut onFormValidation={handleFormValidation} />
       </div>
     </div>
-  )
+  );
 }

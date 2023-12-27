@@ -1,5 +1,5 @@
 :root {
-  --color-bg-primary: #c4e3d8;
+  --color-bg-primary: #b9ddd0;
   --color-bg-Two: #cde9de;
   --color-bg-secundary: #02724b;
   --color-primary: #13141f;
@@ -21,8 +21,19 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-family: 'IBM Plex Mono', monospace;
   background-color: var(--color-bg-primary);
+}
+
+input, input::placeholder{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h1{
+  font-size: 1.8rem;
 }
 
 span, a {
