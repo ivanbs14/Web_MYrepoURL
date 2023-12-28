@@ -1,15 +1,20 @@
 import { useState } from "react";
 
-import "./styles.css";
+import { Container } from "./styles";
 import Logo from '../../assets/5OnRVY-LogoMakr.png'
 import { RiUserShared2Fill } from "react-icons/ri";
 import { GoPasskeyFill } from "react-icons/go";
 import { InputS } from "../InputS";
 import { Button } from "../Button";
 
-export function SignIn() {
+interface SignInProps {
+   onFormValidation: (isValid: boolean) => void;
+}
+
+export function SignIn({ onFormValidation }: SignInProps) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const [isFormValid, setIsFormValid] = useState(false);
 
    const handleEmailChange = (value: string) => {
       setEmail(value);
@@ -19,8 +24,15 @@ export function SignIn() {
       setPassword(value)
    };
 
+   // Event handler for button click
+   const handleButtonClick = () => {
+      const allFieldsFilled = email.trim() !== '' && password.trim() !== '';
+      setIsFormValid(allFieldsFilled);
+      onFormValidation(allFieldsFilled);
+   };
+
    return (
-      <div className="SignIn">
+      <Container>
          <div className="header">
             <div className='logo flip-in-hor-top'>
             <img src={Logo} alt="logo da pagina" />
@@ -46,11 +58,12 @@ export function SignIn() {
          </div>
          <Button 
             title="Sign In"
+            onClick={handleButtonClick}
          />
          
          <span className="spText">New here? <a href="">Create account</a></span>
-         <a href="">Forgot your password?</a>
-      </div>
+         <button >Forgot your password?</button>
+      </Container>
    )
    
 }

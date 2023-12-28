@@ -45,6 +45,15 @@ a{
   text-decoration: none;
 }
 
-a:hover {
+button {
+  border: none;
+  background: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.4rem;
+
+  cursor: pointer;
+}
+
+button:hover, a:hover {
   color: var(--color-bg-secundary);
 }

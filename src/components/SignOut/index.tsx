@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import { Container } from "./styles";
 import Logo from '../../assets/5OnRVY-LogoMakr.png';
 import { RiUserShared2Fill, RiUserSettingsFill } from 'react-icons/ri';
 import { GoPasskeyFill } from 'react-icons/go';
@@ -37,7 +37,7 @@ export function SignOut({ onFormValidation }: SignOutProps) {
   };
 
   return (
-    <div className="SignIn">
+    <Container>
       <div className="header">
         <div className="logo flip-in-hor-top">
           <img src={Logo} alt="logo da pagina" />
@@ -66,6 +66,6 @@ export function SignOut({ onFormValidation }: SignOutProps) {
         />
       </div>
       <Button title="Create account" onClick={handleButtonClick} />
-    </div>
+    </Container>
   );
 }
