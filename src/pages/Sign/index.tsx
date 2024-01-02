@@ -34,6 +34,11 @@ export function Sign() {
   const handleCreateAccountClick = () => {
       setIsValidateLog(false);
   };
+  
+  // Function to handle click on "Create account" link
+  const handleLog = (isLog: boolean,) => {
+      setIsValidateLog(isLog);
+  };
 
   return (
     <div className="container">
@@ -48,7 +53,7 @@ export function Sign() {
         </div>
         :
         <div className="page slide-in-bottom">
-          <SignOut onFormValidation={handleFormValidation} />
+          <SignOut onFormValidation={handleFormValidation} onFormLog={handleLog}/>
         </div>
       }
     </div>

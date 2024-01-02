@@ -8,9 +8,10 @@ import { Button } from '../Button';
 
 interface SignOutProps {
   onFormValidation: (isValid: boolean, message?: string) => void;
+  onFormLog: (isLog: boolean) => void;
 }
 
-export function SignOut({ onFormValidation }: SignOutProps) {
+export function SignOut({ onFormValidation, onFormLog }: SignOutProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,6 +37,7 @@ export function SignOut({ onFormValidation }: SignOutProps) {
          try {
             console.log(name, email, password)
             onFormValidation(true);
+            onFormLog(true)
          } catch (error) {
             console.error(error);
             if (error instanceof Error) {
