@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from '../../hooks/auth';
 
 import { Container } from "./styles";
 import Logo from '../../assets/5OnRVY-LogoMakr.png'
@@ -8,11 +9,12 @@ import { InputS } from "../InputS";
 import { Button } from "../Button";
 
 interface SignInProps {
-   onFormValidation: (isValid: boolean, formData: { email: string, password: string }) => void;
+   onFormValidation: (isValid: boolean, message?: string) => void;
    onCreateAccountClick: () => void;
 }
 
 export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) {
+   const { signIn } = useAuth();
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [, setIsFormValid] = useState(false);
@@ -31,13 +33,23 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
    };
 
    // Event handler for button click
-   const handleButtonClick = () => {
+   const handleButtonClick = async () => {
       const allFieldsFilled = email.trim() !== '' && password.trim() !== '';
-      setIsFormValid(allFieldsFilled);
-
+      
       if (allFieldsFilled) {
-         const formData = { email, password };
-         onFormValidation(allFieldsFilled, formData);
+         try {
+            await signIn({ email, password });
+            onFormValidation(true);
+         } catch (error) {
+            console.error(error);
+            if (error instanceof Error) {
+               onFormValidation(false, `${error.message}`);
+            }else {
+               console.log('Erro desconhecido ao realizar login');
+            }
+         }
+      } else {
+         onFormValidation(false, "FILL IN ALL FIELDS");
       }
    };
 

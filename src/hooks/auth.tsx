@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { users } from "../utils/dataAdm";
+import { usersLog } from "../utils/dataAdm";
 
 interface User {
   email: string;
@@ -32,20 +32,19 @@ function AuthProvider({ children }: AuthProviderProps) {
   async function signIn({ email, password }: User): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        const user = users.find(u => u.email === email && u.password === password);
+        const user = usersLog.find(u => u.email === email && u.password === password);
   
         if (user) {
           localStorage.setItem("@REALB:user", JSON.stringify(user));
           setData({ user, signIn, signOut });
-          resolve(); // Resolvendo a Promise com sucesso
+          resolve();
         } else {
-          console.error("Usuário não existe");
-          reject(new Error("Usuário não encontrado")); // Rejeitando a Promise com um erro
+          reject(new Error("USER DOES NOT EXIST."));
         }
       } catch (error) {
         console.error('Erro ao realizar login:', error);
         alert("Não foi possível entrar.");
-        reject(error); // Rejeitando a Promise com o erro
+        reject(error);
       }
     });
   }

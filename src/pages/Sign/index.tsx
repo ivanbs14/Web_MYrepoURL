@@ -21,14 +21,14 @@ export function Sign() {
   };
 
   // Function to handle form validation from the SignOut component
-  const handleFormValidation = (isValid: boolean, formData: { email: string, password: string }) => {
+  const handleFormValidation = (isValid: boolean, message?: string) => {
     setIsFormValid(isValid);
 
     if (!isValid) {
-      setAlertMessage('FILL IN ALL FIELDS...');
+      setAlertMessage(message || '');
       setAlertDisabled(false);
     } else {
-      console.log(formData)
+      console.log(message)
       setAlertDisabled(true);
     }
   };
@@ -51,7 +51,7 @@ export function Sign() {
         </div>
         :
         <div className="page slide-in-bottom">
-          <SignOut onFormValidation={handleFormValidation} />
+          {/* <SignOut onFormValidation={handleFormValidation} /> */}
         </div>
       }
     </div>
