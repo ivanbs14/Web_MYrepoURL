@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container } from "./styles";
 import Logo from '../../assets/5OnRVY-LogoMakr.png';
 import { RiUserShared2Fill, RiUserSettingsFill } from 'react-icons/ri';
@@ -14,7 +14,7 @@ export function SignOut({ onFormValidation }: SignOutProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [, setIsFormValid] = useState(false);
 
   // Event handlers for input changes
   const handleEmailChange = (newEmail: string) => {

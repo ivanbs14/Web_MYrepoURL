@@ -1,4 +1,6 @@
 :root {
+  font-size: 62.5%;
+
   --color-bg-primary: #b9ddd0;
   --color-bg-Two: #cde9de;
   --color-bg-secundary: #02724b;
@@ -13,10 +15,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {

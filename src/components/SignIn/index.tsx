@@ -9,12 +9,18 @@ import { Button } from "../Button";
 
 interface SignInProps {
    onFormValidation: (isValid: boolean) => void;
+   onCreateAccountClick: () => void;
 }
 
-export function SignIn({ onFormValidation }: SignInProps) {
+export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const [isFormValid, setIsFormValid] = useState(false);
+   const [, setIsFormValid] = useState(false);
+
+   const handleCreateAccountClick = (event: React.MouseEvent) => {
+      event.preventDefault();
+      onCreateAccountClick();
+   };
 
    const handleEmailChange = (value: string) => {
       setEmail(value);
@@ -61,7 +67,7 @@ export function SignIn({ onFormValidation }: SignInProps) {
             onClick={handleButtonClick}
          />
          
-         <span className="spText">New here? <a href="">Create account</a></span>
+         <span className="spText">New here? <a href="#" onClick={handleCreateAccountClick}>Create account</a></span>
          <button >Forgot your password?</button>
       </Container>
    )
