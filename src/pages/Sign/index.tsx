@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../hooks/auth';
 import './styles.css';
 
 import { SignOut } from '../../components/SignOut';
@@ -6,10 +7,11 @@ import { Alert } from '../../components/Alert';
 import { SignIn } from '../../components/SignIn';
 
 export function Sign() {
+  const { signIn } = useAuth();
   const [alertDisabled, setAlertDisabled] = useState(true);
   const [alertMessage, setAlertMessage] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  /* const [isFiels, setIsField] = useState(false); */
+  const [isFiels, setIsField] = useState(false);
   const [isValidateLog, setIsValidateLog] = useState(true);
 
   // Function to close the alert
@@ -19,15 +21,14 @@ export function Sign() {
   };
 
   // Function to handle form validation from the SignOut component
-  const handleFormValidation = (isValid: boolean) => {
+  const handleFormValidation = (isValid: boolean, formData: { email: string, password: string }) => {
     setIsFormValid(isValid);
 
     if (!isValid) {
-      /* setAlertMessage('FILL IN ALL FIELDS...'); */
-      setAlertMessage('Preencha todos os campos...');
+      setAlertMessage('FILL IN ALL FIELDS...');
       setAlertDisabled(false);
     } else {
-      setAlertMessage('');
+      console.log(formData)
       setAlertDisabled(true);
     }
   };

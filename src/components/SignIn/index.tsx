@@ -8,7 +8,7 @@ import { InputS } from "../InputS";
 import { Button } from "../Button";
 
 interface SignInProps {
-   onFormValidation: (isValid: boolean) => void;
+   onFormValidation: (isValid: boolean, formData: { email: string, password: string }) => void;
    onCreateAccountClick: () => void;
 }
 
@@ -34,7 +34,11 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
    const handleButtonClick = () => {
       const allFieldsFilled = email.trim() !== '' && password.trim() !== '';
       setIsFormValid(allFieldsFilled);
-      onFormValidation(allFieldsFilled);
+
+      if (allFieldsFilled) {
+         const formData = { email, password };
+         onFormValidation(allFieldsFilled, formData);
+      }
    };
 
    return (

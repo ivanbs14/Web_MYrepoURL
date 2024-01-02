@@ -7,7 +7,7 @@ import { InputS } from '../InputS';
 import { Button } from '../Button';
 
 interface SignOutProps {
-  onFormValidation: (isValid: boolean) => void;
+  onFormValidation: (isValid: boolean, formData: { email: string, password: string }) => void;
 }
 
 export function SignOut({ onFormValidation }: SignOutProps) {
@@ -33,7 +33,11 @@ export function SignOut({ onFormValidation }: SignOutProps) {
   const handleButtonClick = () => {
     const allFieldsFilled = name.trim() !== '' && email.trim() !== '' && password.trim() !== '';
     setIsFormValid(allFieldsFilled);
-    onFormValidation(allFieldsFilled);
+
+      if (allFieldsFilled) {
+         const formData = { name, email, password };
+         onFormValidation(allFieldsFilled, formData);
+      }
   };
 
   return (
