@@ -17,7 +17,6 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
    const { signIn } = useAuth();
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const [, setIsFormValid] = useState(false);
 
    const handleCreateAccountClick = (event: React.MouseEvent) => {
       event.preventDefault();

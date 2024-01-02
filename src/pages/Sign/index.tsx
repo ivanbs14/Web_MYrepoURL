@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../hooks/auth';
+import { useState } from 'react';
 import './styles.css';
 
 import { SignOut } from '../../components/SignOut';
@@ -7,11 +6,9 @@ import { Alert } from '../../components/Alert';
 import { SignIn } from '../../components/SignIn';
 
 export function Sign() {
-  const { signIn } = useAuth();
   const [alertDisabled, setAlertDisabled] = useState(true);
   const [alertMessage, setAlertMessage] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isFiels, setIsField] = useState(false);
+  const [, setIsFormValid] = useState(false);
   const [isValidateLog, setIsValidateLog] = useState(true);
 
   // Function to close the alert
@@ -51,7 +48,7 @@ export function Sign() {
         </div>
         :
         <div className="page slide-in-bottom">
-          {/* <SignOut onFormValidation={handleFormValidation} /> */}
+          <SignOut onFormValidation={handleFormValidation} />
         </div>
       }
     </div>

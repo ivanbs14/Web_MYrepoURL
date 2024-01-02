@@ -7,14 +7,13 @@ import { InputS } from '../InputS';
 import { Button } from '../Button';
 
 interface SignOutProps {
-  onFormValidation: (isValid: boolean, formData: { email: string, password: string }) => void;
+  onFormValidation: (isValid: boolean, message?: string) => void;
 }
 
 export function SignOut({ onFormValidation }: SignOutProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [, setIsFormValid] = useState(false);
 
   // Event handlers for input changes
   const handleEmailChange = (newEmail: string) => {
@@ -32,11 +31,21 @@ export function SignOut({ onFormValidation }: SignOutProps) {
   // Event handler for button click
   const handleButtonClick = () => {
     const allFieldsFilled = name.trim() !== '' && email.trim() !== '' && password.trim() !== '';
-    setIsFormValid(allFieldsFilled);
-
+      
       if (allFieldsFilled) {
-         const formData = { name, email, password };
-         onFormValidation(allFieldsFilled, formData);
+         try {
+            console.log(name, email, password)
+            onFormValidation(true);
+         } catch (error) {
+            console.error(error);
+            if (error instanceof Error) {
+               onFormValidation(false, `${error.message}`);
+            }else {
+               console.log('Erro desconhecido ao realizar login');
+            }
+         }
+      } else {
+        onFormValidation(false, "FILL IN ALL FIELDS");
       }
   };
 
