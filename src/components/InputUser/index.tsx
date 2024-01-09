@@ -1,4 +1,4 @@
-import { ReactNode, ChangeEvent } from 'react';
+import { ReactNode, ChangeEvent, useState } from 'react';
 import { Container } from "./styles";
 
 interface TextInputProps {
@@ -8,9 +8,11 @@ interface TextInputProps {
 }
 
 export function InputUser({ icon, placeholder, onInputChange }: TextInputProps) {
+  const [inputValue, setInputValue] = useState<string>(''); // Adicionando o estado
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
+    setInputValue(newValue);
     if (onInputChange) {
       onInputChange(newValue);
     }
@@ -22,6 +24,7 @@ export function InputUser({ icon, placeholder, onInputChange }: TextInputProps) 
       <input 
         type="text"
         placeholder={placeholder} 
+        value={inputValue}
         onChange={handleInputChange} 
         name="inputValue"
       />

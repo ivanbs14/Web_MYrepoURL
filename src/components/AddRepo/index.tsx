@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { Container } from "./styles";
 
 import { InputUser } from '../InputUser';
@@ -11,6 +11,18 @@ interface SearchProps {
 }
 
 export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
+    const [searchValue, setSearchValue] = useState<string>('');
+
+    // Atualiza o valor de searchValue com a função fornecida por onInputChange
+    const handleInputChange = (value: string) => {
+        setSearchValue(value);
+    };
+
+    // Função para ser chamada ao clicar em "Localizar"
+    const handleSearchClick = () => {
+        console.log('Valor do input Repositorio:', searchValue);
+        // Aqui você pode realizar outras ações relacionadas à busca
+    };
 
     return (
         <Container className='search'>
@@ -18,10 +30,12 @@ export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
             <InputUser
                 icon={iconSearch}
                 placeholder={placeholder}
+                onInputChange={handleInputChange}
             />
 
             <Button className='btnAdd'
                 title='Adicionar'
+                onClick={handleSearchClick}
             />
         </Container>
     )
