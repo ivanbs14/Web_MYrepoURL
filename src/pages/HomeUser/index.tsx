@@ -48,16 +48,17 @@ export function HomeUser() {
           placeholder='Digite o nome do repositório'
         />
 
-        <h4 className='titleRepo'>Repositórios</h4>
-        <Repositorios />
-        <Repositorios />
-        <Repositorios />
-
         <AddRepo 
           searchTitle='Repositório:'
           iconSearch={<RiGitRepositoryCommitsLine />}
           placeholder='Adicione um novo repositório'
         />
+        
+        <h4 className='titleRepo'>Repositórios</h4>
+        <Repositorios />
+        <Repositorios />
+        <Repositorios />
+
       </div>
 
     </Container>

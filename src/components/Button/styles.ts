@@ -1,4 +1,6 @@
-.btn{
+import styled from "styled-components";
+
+export const Container = styled.button`
     width: 100%;
     height: 3rem;
     border-radius: 0.5rem;
@@ -14,9 +16,9 @@
 
     cursor: pointer;
     transition: transform 0.3s ease;
-}
 
-.btn:hover{
-    transform: scale(1.05);
-    color: #FFF;
-}
+    &:hover{
+        transform: scale(1.05);
+        color: #FFF;
+    }
+`;

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import './styles.css';
+import { Container } from "./styles";
 
 import { InputUser } from '../InputUser';
 import { Button } from '../Button';
@@ -13,8 +13,8 @@ interface SearchProps {
 export function Search({ searchTitle, placeholder, iconSearch }: SearchProps) {
 
     return (
-        <div className='search'>
-            <h2>{searchTitle}</h2>
+        <Container>
+            <h2 className='h2One'>{searchTitle}</h2>
             <InputUser
                 icon={iconSearch}
                 placeholder={placeholder}
@@ -26,6 +26,6 @@ export function Search({ searchTitle, placeholder, iconSearch }: SearchProps) {
             <Button className='btnsearch'
                 title='Localizar'
             />
-        </div>
+        </Container>
     )
 }

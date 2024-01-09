@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes  } from "react";
 
-import "./styles.css";
+import { Container } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     title: string;
@@ -9,12 +9,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ title, loading = false, ...rest}: ButtonProps) {
     return (
-        <button className="btn"
+        <Container className="btn"
             type='button'
             disabled={loading}
             {...rest}
         >
             {loading ? 'Carregando...' : title}
-        </button>
+        </Container>
     )
 }

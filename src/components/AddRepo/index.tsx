@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import './styles.css';
+import { Container } from "./styles";
 
 import { InputUser } from '../InputUser';
 import { Button } from '../Button';
@@ -13,7 +13,7 @@ interface SearchProps {
 export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
 
     return (
-        <div className='search'>
+        <Container className='search'>
             <h2>{searchTitle}</h2>
             <InputUser
                 icon={iconSearch}
@@ -23,6 +23,6 @@ export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
             <Button className='btnAdd'
                 title='Adicionar'
             />
-        </div>
+        </Container>
     )
 }

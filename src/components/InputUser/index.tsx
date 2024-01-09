@@ -1,5 +1,5 @@
 import { ReactNode, ChangeEvent } from 'react';
-import './styles.css';
+import { Container } from "./styles";
 
 interface TextInputProps {
   icon?: ReactNode;
@@ -17,15 +17,14 @@ export function InputUser({ icon, placeholder, onInputChange }: TextInputProps) 
   };
 
   return (
-    <div className="input-container">
+    <Container>
       <div className="icon">{icon}</div>
       <input 
         type="text"
         placeholder={placeholder} 
-        className="input-text" 
         onChange={handleInputChange} 
         name="inputValue"
       />
-    </div>
+    </Container>
   )
 }

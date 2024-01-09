@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
-import "./style.css";
+import { Container } from "./style";
 import { IconType } from 'react-icons';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
@@ -8,7 +8,7 @@ interface InputWithIconProps {
   value: string;
   onChange: (value: string) => void;
   icon?: IconType;
-  type?: string; // Adicionando a propriedade 'type' para controlar o tipo de input
+  type?: string;
 }
 
 export function InputS({ placeholder, value, onChange, icon: Icon, type = 'text' }: InputWithIconProps) {
@@ -23,11 +23,10 @@ export function InputS({ placeholder, value, onChange, icon: Icon, type = 'text'
   };
 
   return (
-    <div className="input-with-icon">
+    <Container>
       {Icon && <Icon className="input-icon" />}
       <input
-        className='inputS'
-        type={type === 'password' && showPassword ? 'text' : type} // Alterando o tipo de input para 'text' se for senha e a senha estiver visível
+        type={type === 'password' && showPassword ? 'text' : type}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
@@ -41,6 +40,6 @@ export function InputS({ placeholder, value, onChange, icon: Icon, type = 'text'
           {showPassword ? < FiEye /> : < FiEyeOff/>}
         </button>
       )}
-    </div>
+    </Container>
   );
 }
