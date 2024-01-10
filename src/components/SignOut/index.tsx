@@ -9,9 +9,10 @@ import { Button } from '../Button';
 interface SignOutProps {
   onFormValidation: (isValid: boolean, message?: string) => void;
   onFormLog: (isLog: boolean) => void;
+  onCreateAccountClick: () => void;
 }
 
-export function SignOut({ onFormValidation, onFormLog }: SignOutProps) {
+export function SignOut({ onFormValidation, onFormLog, onCreateAccountClick }: SignOutProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,6 +52,11 @@ export function SignOut({ onFormValidation, onFormLog }: SignOutProps) {
       }
   };
 
+  const handleCreateAccountClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    onCreateAccountClick();
+  };
+
   return (
     <Container>
       <div className="header">
@@ -81,6 +87,7 @@ export function SignOut({ onFormValidation, onFormLog }: SignOutProps) {
         />
       </div>
       <Button title="Create account" onClick={handleButtonClick} />
+      <span className="spText">Already have a registration? <a href="#" onClick={handleCreateAccountClick}>Log in</a></span>
     </Container>
   );
 }

@@ -21,4 +21,9 @@ export const Container = styled.button`
         transform: scale(1.05);
         color: #FFF;
     }
+
+    @media screen and (min-width: 1920px) and (max-width: 2560px) {
+        height: 5rem;
+        font-size: 2rem;
+    }
 `;

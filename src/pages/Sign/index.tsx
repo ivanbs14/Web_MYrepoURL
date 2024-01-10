@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './styles.css';
+import { Container } from "./styles";
 
 import { SignOut } from '../../components/SignOut';
 import { Alert } from '../../components/Alert';
@@ -36,12 +36,17 @@ export function Sign() {
   };
   
   // Function to handle click on "Create account" link
+  const handleReturnLogAccountClick = () => {
+      setIsValidateLog(true);
+  };
+  
+  // Function to handle click on "Create account" link
   const handleLog = (isLog: boolean,) => {
       setIsValidateLog(isLog);
   };
 
   return (
-    <div className="container">
+    <Container>
       {!alertDisabled && (
         <Alert onClickOff={handleAlertClose} message={alertMessage}>
           <h1>{alertMessage}</h1>
@@ -53,9 +58,9 @@ export function Sign() {
         </div>
         :
         <div className="page slide-in-bottom">
-          <SignOut onFormValidation={handleFormValidation} onFormLog={handleLog}/>
+          <SignOut onFormValidation={handleFormValidation} onFormLog={handleLog} onCreateAccountClick={handleReturnLogAccountClick}/>
         </div>
       }
-    </div>
+    </Container>
   );
 }

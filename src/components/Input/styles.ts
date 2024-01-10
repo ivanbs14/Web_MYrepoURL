@@ -1,17 +1,18 @@
+
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.button`
+  position: relative;
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   
   margin-top: 0.5rem;
 
-  position: relative;
   display: flex;
   align-items: center;
+  border: 1px solid #574C3A;
   border-radius: 0.5rem;
-  box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.60) inset, -4px -4px 12px 0px rgba(253, 255, 255, 0.80) inset;
-  background-color: var(--color-bg-primary);
+  background: #EFEAE2;
 
   .icon{
     position: absolute;
@@ -19,21 +20,19 @@ export const Container = styled.div`
   }
 
   .icon svg{
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: #574C3A;
   }
 
-  input{
-    width: 100%;
-    height: 4rem;
+  .input-text{
+    height: 3rem;
     color: #574C3A;
     position: absolute;
     font-size: 1.4rem;
     padding-left: 4rem;
     background: none;
-    border: none;
-    outline: none;
+    border: 0;
   }
 
   .input-text::placeholder {
@@ -45,9 +44,5 @@ export const Container = styled.div`
     outline: none;
     border: 1.5px solid #635642;
     border-radius: 0.5rem;
-  }
-
-  @media screen and (min-width: 1920px) and (max-width: 2560px) {
-    
   }
 `;

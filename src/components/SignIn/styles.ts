@@ -56,4 +56,47 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
    }
+
+   @media screen and (min-width: 2561px) and (max-width: 3840px) {
+      
+   }
+
+   @media screen and (min-width: 1920px) and (max-width: 2560px) {
+      width: 60rem;
+      height: 70rem;
+
+      .inputs {
+         gap: 3rem;
+         margin-bottom: 5rem;
+      }
+
+      .spText {
+         margin-top: 3rem;
+      }
+
+      .header {
+         gap: 1rem;
+         margin-bottom: 4rem;
+      }
+
+      .logo {
+         gap: 2rem;
+      }
+
+      img {
+         width: 15%;
+      }
+
+      .nameRepo {
+         font-size: 2.8rem;
+      }
+   }
+
+   @media screen and (min-width: 1440px) and (max-width: 1919px) {
+      
+   }
+
+   @media screen and (min-width: 1024px) and (max-width: 1439px) {
+      
+   }
 `;

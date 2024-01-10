@@ -42,6 +42,7 @@ span, a {
 a{
   color: var(--color-primary);
   text-decoration: none;
+  font-weight: bold;
 }
 
 button {
@@ -55,4 +56,10 @@ button {
 
 button:hover, a:hover {
   color: var(--color-bg-secundary);
+}
+
+@media screen and (min-width: 1920px) and (max-width: 2560px) {
+  span, a, input, input::placeholder, button {
+    font-size: 1.8rem;
+  }
 }
