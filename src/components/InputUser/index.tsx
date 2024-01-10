@@ -1,14 +1,19 @@
-import { ReactNode, ChangeEvent, useState } from 'react';
+import { ReactNode, ChangeEvent, useState, useEffect } from 'react';
 import { Container } from "./styles";
 
 interface TextInputProps {
   icon?: ReactNode;
   placeholder?: string;
+  value: string;
   onInputChange?: (value: string) => void;
 }
 
-export function InputUser({ icon, placeholder, onInputChange }: TextInputProps) {
-  const [inputValue, setInputValue] = useState<string>(''); // Adicionando o estado
+export function InputUser({ icon, placeholder, value, onInputChange }: TextInputProps) {
+  const [inputValue, setInputValue] = useState<string>(value || '');
+
+  useEffect(() => {
+    setInputValue(value || '');
+  }, [value]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;

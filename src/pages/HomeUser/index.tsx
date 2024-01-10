@@ -46,6 +46,12 @@ export function HomeUser() {
     }
   };
 
+  const handleAddSuccess = async () => {
+    // Atualiza a lista de repositórios após adicionar um novo repositório
+    const response = await axios.get("http://localhost:3000/posts");
+    setRepos(response.data);
+  };
+
   return (
     <Container>
       <div className='scale-out-tl'>
@@ -64,14 +70,15 @@ export function HomeUser() {
           searchTitle='Repository:'
           iconSearch={<RiGitRepositoryCommitsLine />}
           placeholder='Add a new repository'
+          onAddSuccess={handleAddSuccess}
         />
         
         <h4 className='titleRepo'>Repositories</h4>
-        {repos?
-            repos.map((repo) => (
+        {repos.length ?
+            repos.map((repo, index) => (
               <Repository
               key={repo.id}
-              title={`Link Repository ${repo.id}`}
+              title={`Link Repository ${index + 1}`}
               link={repo.link}
               onDelete={() => handleDelete(repo.id)}
             />
