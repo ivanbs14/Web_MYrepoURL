@@ -19,6 +19,7 @@ interface Repo {
 
 export function HomeUser() {
   const [repos, setRepos] = useState<Repo[]>([]);
+  const [filteredRepos, setFilteredRepos] = useState<Repo[]>([]);
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -52,6 +53,15 @@ export function HomeUser() {
     setRepos(response.data);
   };
 
+  const handleSearchClick = (searchValue: string) => {
+    const filteredRepos = repos.filter(repo => repo.link.includes(searchValue));
+    setFilteredRepos(filteredRepos);
+  };
+
+  const handleClearClick = () => {
+    setFilteredRepos([]);
+  };
+
   return (
     <Container>
       <div className='scale-out-tl'>
@@ -64,6 +74,8 @@ export function HomeUser() {
           searchTitle='Search:'
           iconSearch={<AiOutlineFileSearch />}
           placeholder='Enter the repository name'
+          onSearchValueChange={handleSearchClick}
+          onClearClick={handleClearClick}
         />
 
         <AddRepo 
@@ -74,17 +86,27 @@ export function HomeUser() {
         />
         
         <h4 className='titleRepo'>Repositories</h4>
-        {repos.length ?
-            repos.map((repo, index) => (
-              <Repository
-              key={repo.id}
-              title={`Link Repository ${index + 1}`}
-              link={repo.link}
-              onDelete={() => handleDelete(repo.id)}
-            />
-          ))
-          :
-          <><h1>Not Repository found</h1></>
+        {filteredRepos.length ?
+            filteredRepos.map((repo, index) => (
+                <Repository
+                    key={repo.id}
+                    title={`Link Repository ${index + 1}`}
+                    link={repo.link}
+                    onDelete={() => handleDelete(repo.id)}
+                />
+            ))
+            :
+            repos.length ?
+                repos.map((repo, index) => (
+                    <Repository
+                        key={repo.id}
+                        title={`Link Repository ${index + 1}`}
+                        link={repo.link}
+                        onDelete={() => handleDelete(repo.id)}
+                    />
+                ))
+                :
+                <h1>Not Repository found</h1>
         }
       </div>
     </Container>

@@ -8,20 +8,28 @@ interface SearchProps {
     searchTitle: string;
     placeholder?: string;
     iconSearch?: ReactNode;
+    onSearchValueChange?: (value: string) => void;
+    onClearClick?: () => void;
 }
 
-export function Search({ searchTitle, placeholder, iconSearch }: SearchProps) {
+export function Search({ searchTitle, placeholder, iconSearch, onSearchValueChange, onClearClick }: SearchProps) {
     const [searchValue, setSearchValue] = useState<string>('');
 
-    // Atualiza o valor de searchValue com a função fornecida por onInputChange
     const handleInputChange = (value: string) => {
         setSearchValue(value);
     };
 
-    // Função para ser chamada ao clicar em "Localizar"
     const handleSearchClick = () => {
-        console.log('Valor do input na busca:', searchValue);
-        // Aqui você pode realizar outras ações relacionadas à busca
+        if (onSearchValueChange) {
+            onSearchValueChange(searchValue);
+        }
+    };
+
+    const handleClearClick = () => {
+        setSearchValue('');
+        if (onClearClick) {
+            onClearClick();
+        }
     };
 
     return (
@@ -30,12 +38,14 @@ export function Search({ searchTitle, placeholder, iconSearch }: SearchProps) {
             <InputUser
                 icon={iconSearch}
                 placeholder={placeholder}
+                value={searchValue}
                 onInputChange={handleInputChange}
             />
 
             <div className='btnButts'>
                 <Button className='btnclear'
                     title='Clear'
+                    onClick={handleClearClick}
                 />
                 <Button className='btnsearch'
                     title='Search'
