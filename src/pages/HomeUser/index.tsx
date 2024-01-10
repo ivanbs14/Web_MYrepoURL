@@ -1,38 +1,50 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 
 import { AiOutlineFileSearch } from 'react-icons/ai';
 import { RiGitRepositoryCommitsLine } from 'react-icons/ri';
 
+import axios from 'axios';
+
 import { Nav } from '../../components/Nav';
 import { Search } from '../../components/Search';
 import { AddRepo } from '../../components/AddRepo';
-import { Repositorios } from '../../components/Repositorios';
+import { Repository } from '../../components/Repository/index.js';
 import teste from '../../assets/Logo.png'
 
-const userId = '64ee749422dc63b88a6abf68';
+interface Repo {
+  id: number;
+  link: string;
+}
 
 export function HomeUser() {
-  const [allRepo, setAllRepo] = useState()
+  const [repos, setRepos] = useState<Repo[]>([]);
 
-  /* const loadRepository = async (query = '') => {
-    const response = await getRepository(userId, query);
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/posts");
+        setRepos(response.data);
+      } catch (error) {
+        console.error("Error getting repositories", error);
+      }
+    };
 
-    console.log(response.data);
-  } */
+    fetchRepos();
+  }, []);
 
-  /* useEffect(() => {
-    (async () => await loadRepository())();
+  const handleDelete = async (id: number) => {
+    try {
 
-    async function fetchTags() {
-      const response = await api.get("/repositories");
-      setAllRepo(response.data)
+      // Realiza uma requisição DELETE para a API JSON Server
+      await fetch(`http://localhost:3000/posts/${id}`, { method: 'DELETE' });
+
+      // Atualiza a lista de repositórios após a exclusão bem-sucedida
+      setRepos((prevRepos) => prevRepos.filter(repo => repo.id !== id));
+    } catch (error) {
+      console.error(`Error deleting repository with id ${id}`, error);
     }
-    
-    fetchTags();
-  }, []) */
-
-  /* console.log(allRepo) */
+  };
 
   return (
     <Container>
@@ -43,24 +55,31 @@ export function HomeUser() {
 
       <div className='mid'>
         <Search 
-          searchTitle='Procurar:'
+          searchTitle='Search:'
           iconSearch={<AiOutlineFileSearch />}
-          placeholder='Digite o nome do repositório'
+          placeholder='Enter the repository name'
         />
 
         <AddRepo 
-          searchTitle='Repositório:'
+          searchTitle='Repository:'
           iconSearch={<RiGitRepositoryCommitsLine />}
-          placeholder='Adicione um novo repositório'
+          placeholder='Add a new repository'
         />
         
-        <h4 className='titleRepo'>Repositórios</h4>
-        <Repositorios />
-        <Repositorios />
-        <Repositorios />
-
+        <h4 className='titleRepo'>Repositories</h4>
+        {repos?
+            repos.map((repo) => (
+              <Repository
+              key={repo.id}
+              title={`Link Repository ${repo.id}`}
+              link={repo.link}
+              onDelete={() => handleDelete(repo.id)}
+            />
+          ))
+          :
+          <><h1>Not Repository found</h1></>
+        }
       </div>
-
     </Container>
-  )
+  );
 }

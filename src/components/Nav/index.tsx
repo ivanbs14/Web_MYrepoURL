@@ -17,16 +17,16 @@ export function Nav() {
   return (
     <Container>
       <div className='logo'>
-        <img src={Logo} alt="logo da pagina" />
+        <img src={Logo} alt="logo of the page" />
         <div className='contain'>
           <h1 className='nameRepo'>MYrepoURL</h1>
-          <span>Cadastre seus Repositórios favoritos</span>
+          <span>Register your favorite Repositories</span>
         </div>
       </div>
 
       <Button 
         className='logout'
-        title='Sair'
+        title='Exit'
         onClick={handleLogout}
       >
       </Button>

@@ -14,15 +14,17 @@ export const Container = styled.div`
         box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.60), -4px -4px 12px 0px rgba(253, 255, 255, 0.80);
 
     h2 {
+        width: 30rem;
         color: #2E2312;
     }
 
-    .btnAdd {
-        width: 47rem;
+    button {
+        width: 45rem;
         height: 4rem;
         margin-top: 0;
 
         font-size: 1.6rem;
         font-weight: 400;
+        padding: 0;
     }
 `;

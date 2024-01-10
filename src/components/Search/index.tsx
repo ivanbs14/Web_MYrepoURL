@@ -33,13 +33,15 @@ export function Search({ searchTitle, placeholder, iconSearch }: SearchProps) {
                 onInputChange={handleInputChange}
             />
 
-            <Button className='btnclear'
-                title='Limpar'
-            />
-            <Button className='btnsearch'
-                title='Localizar'
-                onClick={handleSearchClick}
-            />
+            <div className='btnButts'>
+                <Button className='btnclear'
+                    title='Clear'
+                />
+                <Button className='btnsearch'
+                    title='Search'
+                    onClick={handleSearchClick}
+                />
+            </div>
         </Container>
     )
 }

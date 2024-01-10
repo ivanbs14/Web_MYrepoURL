@@ -14,11 +14,17 @@ export const Container = styled.div`
     box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.60), -4px -4px 12px 0px rgba(253, 255, 255, 0.80);
 
     .h2One {
+        width: 30rem;
         color: #2E2312;
     }
 
+    .btnButts {
+        width: 45rem;
+        display: flex;
+        gap: 2rem;
+    }
+
     .btnclear, .btnsearch {
-        width: 20rem;
         height: 4rem;
         margin-top: 0;
 

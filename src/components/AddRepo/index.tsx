@@ -20,7 +20,7 @@ export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
 
     // Função para ser chamada ao clicar em "Localizar"
     const handleSearchClick = () => {
-        console.log('Valor do input Repositorio:', searchValue);
+        console.log('Repository input value:', searchValue);
         // Aqui você pode realizar outras ações relacionadas à busca
     };
 
@@ -34,7 +34,7 @@ export function AddRepo({ searchTitle, placeholder, iconSearch }: SearchProps) {
             />
 
             <Button className='btnAdd'
-                title='Adicionar'
+                title='To add'
                 onClick={handleSearchClick}
             />
         </Container>
