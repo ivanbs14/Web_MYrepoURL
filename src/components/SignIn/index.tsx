@@ -42,7 +42,7 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
          } catch (error) {
             console.error(error);
             if (error instanceof Error) {
-               onFormValidation(false, `${error.message}`);
+               onFormValidation(false, `Invalid email or password`);
             }else {
                console.log('Erro desconhecido ao realizar login');
             }
