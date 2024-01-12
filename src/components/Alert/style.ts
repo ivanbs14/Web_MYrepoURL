@@ -9,9 +9,9 @@ export const Container = styled.div<ContainerProps>`
   top: 0;
   width: 100%;
   padding: 1rem 3rem;
-  background-color: var(--color-bg-secundary);
+  background-color: var(--color-bg-alert100);
   text-align: center;
-  color: var(--color-text-light);
+  color: var(--color-bg-alert000);
   cursor: pointer;
 
   &:hover{
