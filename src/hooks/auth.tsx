@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { auth } from "../ConfigFireB/firebase"; // Importando o objeto auth do Firebase
+import { auth } from "../ConfigFireB/firebase";
 import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
 
 interface User {

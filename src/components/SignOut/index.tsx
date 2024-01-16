@@ -6,6 +6,9 @@ import { GoPasskeyFill } from 'react-icons/go';
 import { InputS } from '../InputS';
 import { Button } from '../Button';
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../ConfigFireB/firebase";
+
 interface SignOutProps {
   onFormValidation: (isValid: boolean, message?: string) => void;
   onFormLog: (isLog: boolean) => void;
@@ -17,39 +20,26 @@ export function SignOut({ onFormValidation, onFormLog, onCreateAccountClick }: S
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Event handlers for input changes
-  const handleEmailChange = (newEmail: string) => {
-    setEmail(newEmail);
-  };
-
-  const handlePasswordChange = (newPassword: string) => {
-    setPassword(newPassword);
-  };
-
-  const handleNameChange = (newName: string) => {
-    setName(newName);
-  };
-
   // Event handler for button click
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     const allFieldsFilled = name.trim() !== '' && email.trim() !== '' && password.trim() !== '';
       
-      if (allFieldsFilled) {
-         try {
-            console.log(name, email, password)
-            onFormValidation(true);
-            onFormLog(true)
-         } catch (error) {
-            console.error(error);
-            if (error instanceof Error) {
-               onFormValidation(false, `${error.message}`);
-            }else {
-               console.log('Erro desconhecido ao realizar login');
-            }
-         }
-      } else {
-        onFormValidation(false, "FILL IN ALL FIELDS");
+    if (allFieldsFilled) {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        console.log("User created successfully:", email);
+        onFormValidation(true);
+        onFormLog(true);
+      } catch (error) {
+          if (error instanceof Error) {
+            onFormValidation(false, `Email in use`);
+          } else {
+            console.log(`Unknown error while creating user ${error instanceof Error}`);
+          }
       }
+    } else {
+      onFormValidation(false, "FILL IN ALL FIELDS");
+    }
   };
 
   const handleCreateAccountClick = (event: React.MouseEvent) => {
@@ -70,20 +60,20 @@ export function SignOut({ onFormValidation, onFormLog, onCreateAccountClick }: S
         <InputS value={name} 
           icon={RiUserShared2Fill} 
           placeholder="Name" 
-          onChange={handleNameChange} 
+          onChange={(value: string) => setName(value)}
         />
         <InputS
           value={email}
           icon={RiUserSettingsFill}
           placeholder="Email"
-          onChange={handleEmailChange}
+          onChange={(value: string) => setEmail(value)}
         />
         <InputS
           type="password"
           value={password}
           icon={GoPasskeyFill}
           placeholder="Password"
-          onChange={handlePasswordChange}
+          onChange={(value: string) => setPassword(value)}
         />
       </div>
       <Button title="Create account" onClick={handleButtonClick} />
