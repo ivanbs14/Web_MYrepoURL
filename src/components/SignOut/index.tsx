@@ -31,10 +31,12 @@ export function SignOut({ onFormValidation, onFormLog, onCreateAccountClick }: S
         onFormValidation(true);
         onFormLog(true);
       } catch (error) {
-          if (error instanceof Error) {
-            onFormValidation(false, `Email in use`);
+          if (error instanceof Error && error.message === 'Firebase: Error (auth/invalid-email).') {
+            onFormValidation(false, `Invalid email`);
+          } else if (error instanceof Error && error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+            onFormValidation(false, `The password must contain at least 6 characters`);
           } else {
-            console.log(`Unknown error while creating user ${error instanceof Error}`);
+            onFormValidation(false, `user is already registered`);
           }
       }
     } else {
