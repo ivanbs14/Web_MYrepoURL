@@ -27,7 +27,7 @@ export function SignOut({ onFormValidation, onFormLog, onCreateAccountClick }: S
     if (allFieldsFilled) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        console.log("User created successfully:", email);
+        /* console.log("User created successfully:", email); */
         onFormValidation(true);
         onFormLog(true);
       } catch (error) {

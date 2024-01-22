@@ -11,9 +11,10 @@ import { Button } from "../Button";
 interface SignInProps {
    onFormValidation: (isValid: boolean, message?: string) => void;
    onCreateAccountClick: () => void;
+   onForgotPasswordClick: () => void;
 }
 
-export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) {
+export function SignIn({ onFormValidation, onCreateAccountClick, onForgotPasswordClick }: SignInProps) {
    const { signIn } = useAuth();
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
@@ -21,14 +22,6 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
    const handleCreateAccountClick = (event: React.MouseEvent) => {
       event.preventDefault();
       onCreateAccountClick();
-   };
-
-   const handleEmailChange = (value: string) => {
-      setEmail(value);
-   };
-   
-   const handlePasswordChange = (value: string) => {
-      setPassword(value)
    };
 
    // Event handler for button click
@@ -66,7 +59,7 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
                value={email}
                icon={RiUserShared2Fill}
                placeholder="Email"
-               onChange={handleEmailChange}
+               onChange={(value: string) => setEmail(value)}
             />
             
             <InputS 
@@ -74,7 +67,7 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
                value={password}
                icon={GoPasskeyFill}
                placeholder="Password"
-               onChange={handlePasswordChange}
+               onChange={(value: string) => setPassword(value)}
             />
          </div>
          <Button 
@@ -83,7 +76,7 @@ export function SignIn({ onFormValidation, onCreateAccountClick }: SignInProps) 
          />
          
          <span className="spText">New here? <a href="#" onClick={handleCreateAccountClick}>Create account</a></span>
-         <button >Forgot your password?</button>
+         <button onClick={onForgotPasswordClick}>Forgot your password?</button>
       </Container>
    )
    
