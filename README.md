@@ -1,13 +1,4 @@
-# React + TypeScript + Vite
-
-PROJECT IN PROGRESS
-
-NPM RUN DEV
-
-json-server --watch db.json --port 3000
-
-
-<h1 align="center"> My RepoURL </h1>
+<h1 align="center"> MyrepoURL </h1>
 
 <p align="center">
 Desenvolvido por Ivan Barbosa.<br>
@@ -23,7 +14,6 @@ Desenvolvido por Ivan Barbosa.<br>
 
 ## 💻 Projeto
 
-- :</br>
 - Esta aplicação foi desenvolvida com o propósito de oferecer aos usuários uma ferramenta simples e eficaz para organizar e interagir com URLs de repositórios de maneira personalizada. Explore, adicione, filtre e gerencie seus repositórios de forma intuitiva e eficiente.</br>
 
 ## 🚀 Tecnologias
@@ -35,6 +25,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - JavaScript
 - Typescript
 - CSS / Styled Components
+
+- Banco de Dados Firebase:
+O Firebase é uma plataforma de desenvolvimento de aplicativos oferecida pelo Google que fornece uma variedade de serviços, incluindo um banco de dados em tempo real chamado Firestore. O Firestore é um banco de dados NoSQL que oferece uma estrutura de dados flexível e escalabilidade automática para aplicações web e móveis.</br>
 
 ## 🔖 Dependências
 
