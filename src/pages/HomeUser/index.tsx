@@ -4,6 +4,7 @@ import { Container } from './styles';
 import { AiOutlineFileSearch } from 'react-icons/ai';
 import { RiGitRepositoryCommitsLine } from 'react-icons/ri';
 
+import { getFirestore, collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import axios from 'axios';
 
 import { Nav } from '../../components/Nav';
@@ -13,7 +14,7 @@ import { Repository } from '../../components/Repository/index.js';
 import teste from '../../assets/Logo.png'
 
 interface Repo {
-  id: number;
+  id: string;
   link: string;
 }
 
@@ -22,26 +23,41 @@ export function HomeUser() {
   const [filteredRepos, setFilteredRepos] = useState<Repo[]>([]);
 
   useEffect(() => {
-    const fetchRepos = async () => {
+    const fetchData = async () => {
+      const db = getFirestore();
+      const repoCollection = collection(db, 'repositories');
+
       try {
-        const response = await axios.get("http://localhost:3000/posts");
-        setRepos(response.data);
+        const result = await getDocs(repoCollection);
+
+        const listCli: Repo[] = [];
+        result.forEach((doc) => {
+          listCli.push({
+            id: doc.id,
+            link: doc.data().link
+          });
+        });
+
+        setRepos(listCli);
       } catch (error) {
-        console.error("Error getting repositories", error);
+        console.error('Erro ao obter dados do Firestore:', error);
       }
     };
 
-    fetchRepos();
+    fetchData();
   }, []);
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     try {
-
-      // Realiza uma requisição DELETE para a API JSON Server
-      await fetch(`http://localhost:3000/posts/${id}`, { method: 'DELETE' });
-
+      const db = getFirestore();
+    
+      // Referência ao documento no Firestore usando a coleção 'repositories' e o ID fornecido
+      const repoRef = doc(db, 'repositories', id);
+    
+      await deleteDoc(repoRef);
+    
       // Atualiza a lista de repositórios após a exclusão bem-sucedida
-      setRepos((prevRepos) => prevRepos.filter(repo => repo.id !== id));
+      setRepos(prevRepos => prevRepos.filter(repo => repo.id !== id));
     } catch (error) {
       console.error(`Error deleting repository with id ${id}`, error);
     }
